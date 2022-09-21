@@ -29,15 +29,14 @@ int main(void) {
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
 	GPIOA->MODER |= GPIO_MODER_MODER5_0;
 
-	uint8_t code[32] = { 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1,
-			0, 0, 1, 0, 1, 0, 1 };
+	uint32_t code = 0b00000001010100111011101110010101;
 
 	/* Loop forever */
 	for (;;) {
 
 		for (uint8_t ind = 0; ind < 32; ind++) {
 
-			if (code[31 - ind] == 1) {
+			if (code & (1UL << ind)) {
 				GPIOA->BSRR = (1 << 5);
 			} else {
 				GPIOA->BRR = (1 << 5);
@@ -46,6 +45,8 @@ int main(void) {
 
 		for (volatile uint32_t i = 0; i < 100000; i++) {
 		}
+
+
 	}
 
 }
