@@ -73,6 +73,9 @@ void Error_Handler(void);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define HAl_I2C_Mem_Read
+#define HAl_I2C_Mem_Write
+#define HAl_I2C_Mem_IsDeviceReady
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
