@@ -82,7 +82,7 @@ void uart_process_command (char* cmd) {
 		printf("Cau Cau :-)\n");
 	}
 
-/*LED1 control*/
+	/*LED1 control*/
 	else if (strcasecmp(token, "LED1") == 0) {
 		token = strtok(NULL, " ");
 		if (strcasecmp(token, "ON") == 0) {
@@ -93,16 +93,16 @@ void uart_process_command (char* cmd) {
 		printf("OK\n");
 	}
 
-/*LED2 control*/
+	/*LED2 control*/
 	else if (strcasecmp(token, "LED2") == 0) {
-			token = strtok(NULL, " ");
-			if (strcasecmp(token, "ON") == 0) {
-				HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
-			} else if (strcasecmp(token, "OFF") == 0) {
-				HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
-			}
-			printf("OK\n");
+		token = strtok(NULL, " ");
+		if (strcasecmp(token, "ON") == 0) {
+			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
+		} else if (strcasecmp(token, "OFF") == 0) {
+			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
 		}
+		printf("OK\n");
+	}
 /*LED1 and LED2 status*/
 	else if (strcasecmp(token, "STATUS") == 0) {
 		token = strtok(NULL, " ");
@@ -111,14 +111,14 @@ void uart_process_command (char* cmd) {
 		state_led = HAL_GPIO_ReadPin(LED1_GPIO_Port, LED1_Pin);
 		if (state_led != 0) {
 			printf("LED1 IS ON\n");
-		} else{
+		} else {
 			printf("LED1 IS OFF\n");
 		}
 
 		state_led = HAL_GPIO_ReadPin(LED2_GPIO_Port, LED2_Pin);
 		if (state_led != 0) {
 			printf("LED2 IS ON\n");
-		} else{
+		} else {
 			printf("LED2 IS OFF\n");
 		}
 	}
@@ -156,9 +156,8 @@ void uart_process_command (char* cmd) {
 
 /*EEPROM - DUMB*/
 	else if (strcasecmp(token, "DUMB") == 0) {
-		uint32_t addr;
-		uint32_t valueDump;
-		HAL_I2C_Mem_Read(&hi2c1, EEPROM_ADDR, addr, I2C_MEMADD_SIZE_16BIT,
+		uint8_t valueDump[16];
+		HAL_I2C_Mem_Read(&hi2c1, EEPROM_ADDR, 0, I2C_MEMADD_SIZE_16BIT,
 				valueDump, 16, 1000);
 		for (int i = 0; i < 16; i++) {
 			printf("%02x", valueDump[i]);
