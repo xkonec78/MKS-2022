@@ -47,7 +47,7 @@ ADC_HandleTypeDef hadc;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-static const int16_t lookupTable[] = { 1689, 1669, 1649, 1630, 1611, 1593, 1575,
+static const int16_t lookupTable[] = { 1689, 1669, 1649, 1630, 1611, 1593, 1575, // const - neni globalni promenna - RAM neni zaplneno
 		1558, 1540, 1524, 1507, 1491, 1475, 1460, 1445, 1430, 1415, 1401, 1387,
 		1373, 1360, 1347, 1334, 1322, 1309, 1297, 1285, 1274, 1263, 1251, 1241,
 		1230, 1220, 1209, 1199, 1190, 1180, 1171, 1161, 1152, 1144, 1135, 1126,
