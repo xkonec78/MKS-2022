@@ -1,0 +1,13 @@
+close all;
+clear all;
+
+raw = csvread("ntc.csv");
+%t = -30:1:125;
+Uref = 3.3;
+Uin = 
+Nbit = 10;
+ad1 = Uin/Uref * 2^Nbit;
+figure
+plot(raw)
+
+%% ADC = Uin/Uref * 2^Nbit
